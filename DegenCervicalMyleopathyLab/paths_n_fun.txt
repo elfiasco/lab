@@ -1,0 +1,7 @@
+{
+    "json_data_path":"C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/DegenCervicalMyleopathyLab/temp.json",
+    "Rscriptpath":"\"C:/Program Files/R/R-4.2.3/bin/Rscript\"",
+    "my_code_path":"C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/DegenCervicalMyleopathyLab/my_code.R"
+
+
+}

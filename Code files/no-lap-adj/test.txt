@@ -1,0 +1,13 @@
+Time of computation (unix): 1687120266.5683710575103760
+Gait symmetry: 67.6138358232608994 percent
+Step length: 0.5243544354922852 m
+Step time: 0.6400000000000000 sec
+Step length variability: 8.9086993487304955 percent
+Step time variability: 3.6600435881578499 percent
+Step length asymmetry: 1.2895632139666684 percent
+Step time asymmetry: 0.7812500000000007 percent
+Step velocity: 0.8257066351659148 m/sec
+Step count lap 1: 32
+Step count lap 2: 0
+Step count lap 3: 0
+Step count lap 4: 0
