@@ -3,14 +3,17 @@ function [accelData, rotData, timeVect, gyroData] = loadGBExportedFilePostQuat(f
 
 if nargin < 2
 
-    text = fileread('next_sample.txt');
+    %text = fileread('next_sample.txt'); %old way
+    
+    filePath = split(mfilename('fullpath'),'\');
+    filePath = strjoin(filePath(1:length(filePath)-3),'/');
+    text = strcat(filePath,'/DegenCervicalMyleopathyLab/out_data_here.csv');
     % File selection
     %[fileName, folderName]  = uigetfile('*.csv', 'Pick a CSV file exported from innerEar');
     
     % Load Data
     %fileData                = importfilePostQuat(fullfile(folderName, fileName));
     fileData=importfilePostQuat(text);
-    display(text);
     
 else
     
@@ -21,7 +24,7 @@ end
 
 
 % Convert first column to double time vector
-fileData.Timestamp          = seconds(fileData.Timestamp - fileData.Timestamp(1)) + 1/fs;
+fileData.Timestamp          = seconds(fileData.Timestamp - fileData.Timestamp(1)); % + 1/fs
 
 %% Do Preprocessing
 accelData                   = [fileData.AccelX fileData.AccelY fileData.AccelZ];

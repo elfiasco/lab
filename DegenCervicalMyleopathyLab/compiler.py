@@ -1,4 +1,5 @@
 #imports and setup
+
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
@@ -12,7 +13,7 @@ import time
 import sys
 import subprocess
 
-with open('paths_n_fun.txt') as paths_file:
+with open('/'.join(str(__file__).replace('\\','/').split('/')[:-2])+'/paths_n_fun/paths_n_fun.txt') as paths_file:
     paths = eval(paths_file.read())
     paths_file.close()
 test_database_token = paths.get('test_database_token')
@@ -46,9 +47,9 @@ t = threading.Thread(target=animate)
 t.daemon = True
 t.start()
 
-#process_tap(allOfOneTypeOfTest('tap',token), decimals=2).to_csv('compiled/tapping.csv')
-process_peg(allOfOneTypeOfTest('peg',token), decimals=2).to_csv('compiled/nine_hole_peg.csv')
-process_gai(allOfOneTypeOfTest('gai',token), token, thresh=0, show_plots=False, decimals=2).to_csv('compiled/gait_walking.csv')
+process_tap(allOfOneTypeOfTest('tap',token), decimals=2).to_csv('/'.join(str(__file__).replace('\\','/').split('/')[:-1])+'/compiled/tapping.csv')
+process_peg(allOfOneTypeOfTest('peg',token), decimals=2).to_csv('/'.join(str(__file__).replace('\\','/').split('/')[:-1])+'/compiled/nine_hole_peg.csv')
+process_gai(allOfOneTypeOfTest('gai',token), token, thresh=0, show_plots=False, decimals=2).to_csv('/'.join(str(__file__).replace('\\','/').split('/')[:-1])+'/compiled/gait_walking.csv')
 ##kill matlab windows from runs where error was thrown
 command="taskkill /F /IM MATLAB.exe"
 subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8')

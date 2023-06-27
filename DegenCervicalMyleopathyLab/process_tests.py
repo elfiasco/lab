@@ -7,8 +7,9 @@ import time
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import numpy as np
+import os
 
-with open('paths_n_fun.txt') as paths_file:
+with open('/'.join(str(__file__).replace('\\','/').split('/')[:-2])+'/paths_n_fun/paths_n_fun.txt') as paths_file:
     paths = eval(paths_file.read())
     paths_file.close()
 
@@ -111,7 +112,7 @@ def second_gai_process(d, show_plots, thresh):
     return d, df_outdevice
 
 def third_gai_process(trial, prints=False):
-    trial['matlab_ready_df'].to_csv('out_data_here.csv')
+    trial['matlab_ready_df'].to_csv('/'.join(str(__file__).replace('\\','/').split('/')[:-1])+'/out_data_here.csv')
     if prints==True:
         print("Data downloaded")
     #malab runner
@@ -325,11 +326,19 @@ def process_tap(cleanedTapData, prints=True, plots=False, decimals=10):
         print_out=print_out+'\n'
 
         #distance_between_taps_over_time
-        
-        left_finger_left_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(left_finger_left_hand.index)[1:-1]).reshape(-1, 1),((((left_finger_left_hand['X']-left_finger_left_hand['X'].shift(1))**2 + (left_finger_left_hand['Y']-left_finger_left_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
-        right_finger_left_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(left_finger_right_hand.index)[1:-1]).reshape(-1, 1),((((left_finger_right_hand['X']-left_finger_right_hand['X'].shift(1))**2 + (left_finger_right_hand['Y']-left_finger_right_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
-        left_finger_right_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(left_finger_right_hand.index)[1:-1]).reshape(-1, 1),((((left_finger_right_hand['X']-left_finger_right_hand['X'].shift(1))**2 + (left_finger_right_hand['Y']-left_finger_right_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
-        right_finger_right_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(right_finger_right_hand.index)[1:-1]).reshape(-1, 1),((((right_finger_right_hand['X']-right_finger_right_hand['X'].shift(1))**2 + (right_finger_right_hand['Y']-right_finger_right_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
+        try:
+            left_finger_left_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(left_finger_left_hand.index)[1:-1]).reshape(-1, 1),((((left_finger_left_hand['X']-left_finger_left_hand['X'].shift(1))**2 + (left_finger_left_hand['Y']-left_finger_left_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
+            right_finger_left_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(left_finger_right_hand.index)[1:-1]).reshape(-1, 1),((((left_finger_right_hand['X']-left_finger_right_hand['X'].shift(1))**2 + (left_finger_right_hand['Y']-left_finger_right_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
+        except:
+            left_finger_left_hand_distance_between_taps_over_time=-400
+            right_finger_left_hand_distance_between_taps_over_time=-400
+        try:
+            left_finger_right_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(left_finger_right_hand.index)[1:-1]).reshape(-1, 1),((((left_finger_right_hand['X']-left_finger_right_hand['X'].shift(1))**2 + (left_finger_right_hand['Y']-left_finger_right_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
+            right_finger_right_hand_distance_between_taps_over_time=(LinearRegression().fit(np.array(list(right_finger_right_hand.index)[1:-1]).reshape(-1, 1),((((right_finger_right_hand['X']-right_finger_right_hand['X'].shift(1))**2 + (right_finger_right_hand['Y']-right_finger_right_hand['Y'].shift(1))**2)**.5).iloc[1:-1]))).coef_[0]
+        except:
+            right_finger_right_hand_distance_between_taps_over_time=-400
+            left_finger_right_hand_distance_between_taps_over_time=-400
+
         left_hand_distance_between_taps_over_time=np.mean([left_finger_left_hand_distance_between_taps_over_time,right_finger_left_hand_distance_between_taps_over_time])
         right_hand_distance_between_taps_over_time=np.mean([left_finger_right_hand_distance_between_taps_over_time,right_finger_right_hand_distance_between_taps_over_time])
         

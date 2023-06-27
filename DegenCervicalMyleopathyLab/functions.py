@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import pandas as pd
 from datetime import datetime, timedelta
+import os
 
-with open('paths_n_fun.txt') as paths_file:
+with open('/'.join(str(__file__).replace('\\','/').split('/')[:-2])+'/paths_n_fun/paths_n_fun.txt') as paths_file:
     paths = eval(paths_file.read())
     paths_file.close()
 test_database_token = paths.get('test_database_token')

@@ -37,8 +37,11 @@ if(sum(abs(diff(isLeftIC))) ~= (length(isLeftIC) - 1))
     candidateA = repmat([1;0], 20, 1);
     candidateB = repmat([0;1], 20, 1);
     
-    candidateA = candidateA(1:length(isLeftIC));
-    candidateB = candidateB(1:length(isLeftIC));
+    candidateA = candidateA(1:min(length(isLeftIC), length(candidateA)));
+    candidateB = candidateB(1:min(length(isLeftIC), length(candidateB)));
+
+    isLeftIC = isLeftIC(1:min(length(isLeftIC), length(candidateA)));
+
     
     errorA     = sqrt(sum((candidateA - isLeftIC).^2));
     errorB     = sqrt(sum((candidateB - isLeftIC).^2));

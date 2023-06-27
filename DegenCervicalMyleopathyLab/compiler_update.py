@@ -11,6 +11,14 @@ import itertools
 import threading
 import time
 import sys
+
+with open('paths_n_fun.txt') as paths_file:
+    paths = eval(paths_file.read())
+    paths_file.close()
+test_database_token = paths.get('test_database_token')
+pilot_database_token = paths.get('pilot_database_token')
+token=pilot_database_token
+
 print()
 
 start=datetime.now()
