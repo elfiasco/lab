@@ -41,7 +41,7 @@ global ybar
 ybar = mean(y); 
 % Collect ACFs at each lag i
 for i = 1:p
-   ta(i) = acf_k(y,i)
+   ta(i) = acf_k(y,i) ; 
 end
 % Plot ACF
 % Plot rejection region lines for test of individual autocorrelations
@@ -54,7 +54,6 @@ line_hi = (1.96)*(1/sqrt(N))+.05;
 line_lo = -(1.96)*(1/sqrt(N))-.05;
 bar_hi = max(ta)+.05 ;
 bar_lo = -max(ta)-.05 ;
-
 if (abs(line_hi) > abs(bar_hi)) % if rejection lines might not appear on graph
     axis([0 p+.60 line_lo line_hi])
 else

@@ -37,10 +37,10 @@ hs              = ones(1, length(ICs)-1);
 hsLeft          = [];
 hsRight         = [];
 
-for i=2:min(length(ICs), length(isLeftIC))
+for i=2:length(ICs)
     H           = d(ICs(i-1):ICs(i));
     hs(i-1)     = max(H) - (H(1) + H(end))/2;
-
+    
     if isLeftIC(i)
         hsLeft  = [hsLeft, hs(i-1)];
     else
