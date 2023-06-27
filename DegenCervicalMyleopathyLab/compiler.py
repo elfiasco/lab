@@ -11,8 +11,12 @@ import threading
 import time
 import sys
 import subprocess
-test_database_token = 'FF0D4AB80BDB63716462F02BB9291897'
-pilot_database_token = 'BA2BB285FFCF240F0144FB02710BF64F'
+
+with open('paths_n_fun.txt') as paths_file:
+    paths = eval(paths_file.read())
+    paths_file.close()
+test_database_token = paths.get('test_database_token')
+pilot_database_token = paths.get('pilot_database_token')
 token=pilot_database_token
 
 print()
@@ -42,7 +46,7 @@ t = threading.Thread(target=animate)
 t.daemon = True
 t.start()
 
-process_tap(allOfOneTypeOfTest('tap',token), decimals=2).to_csv('compiled/tapping.csv')
+#process_tap(allOfOneTypeOfTest('tap',token), decimals=2).to_csv('compiled/tapping.csv')
 process_peg(allOfOneTypeOfTest('peg',token), decimals=2).to_csv('compiled/nine_hole_peg.csv')
 process_gai(allOfOneTypeOfTest('gai',token), token, thresh=0, show_plots=False, decimals=2).to_csv('compiled/gait_walking.csv')
 ##kill matlab windows from runs where error was thrown

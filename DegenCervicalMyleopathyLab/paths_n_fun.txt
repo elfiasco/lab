@@ -1,7 +1,10 @@
 {
-    "json_data_path":"C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/DegenCervicalMyleopathyLab/temp.json",
-    "Rscriptpath":"\"C:/Program Files/R/R-4.2.3/bin/Rscript\"",
-    "my_code_path":"C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/DegenCervicalMyleopathyLab/my_code.R"
+    "test_database_token":'FF0D4AB80BDB63716462F02BB9291897',
+    "pilot_database_token":'BA2BB285FFCF240F0144FB02710BF64F',
+    "my_code_path":"C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/DegenCervicalMyleopathyLab/my_code.R",
+    "two_lap_adj_code":"\'C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/Code files/two-lap-adj/ComfortableGaitOutcomes.m\'",
+    "two_lap_adj_output":'C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/Code files/two-lap-adj/test.txt',
+    "matlab_path":"\"C:/Program Files/MATLAB/R2022b/bin/matlab.exe\""
 
 
 }

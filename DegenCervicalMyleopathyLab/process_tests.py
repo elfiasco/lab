@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
+with open('paths_n_fun.txt') as paths_file:
+    paths = eval(paths_file.read())
+    paths_file.close()
+
 
 def second_gai_process(d, show_plots, thresh):
     df_outdevice = f.dictListToDF(d['outdevice'])
@@ -111,7 +115,7 @@ def third_gai_process(trial, prints=False):
     if prints==True:
         print("Data downloaded")
     #malab runner
-    command='"C:/Program Files/MATLAB/R2022b/bin/matlab.exe" -nosplash -nodesktop -r "run(\'C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/Code files/two-lap-adj/ComfortableGaitOutcomes.m\'); exit;"' #two-lap-adj   sincmotion-gait-matlab
+    command=paths.get('matlab_path')+' -nosplash -nodesktop -r "run('+paths.get('two_lap_adj_code')+'); exit;"' #two-lap-adj   sincmotion-gait-matlab
     subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8')
     start_time=time.time()
     if prints==True:
@@ -120,7 +124,7 @@ def third_gai_process(trial, prints=False):
     new=False
     wait_time=0
     while new==False and wait_time<15:
-        with open('C:/Users/benst/OneDrive/Desktop/Spring2023/Lab/Code files/two-lap-adj/test.txt', 'r') as file: #two-lap-adj
+        with open(paths.get('two_lap_adj_output'), 'r') as file: #two-lap-adj
             data = file.read()
         file.close()
         data=data.split('\n')

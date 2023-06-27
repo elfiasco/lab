@@ -4,9 +4,14 @@ from mpl_toolkits import mplot3d
 import pandas as pd
 from datetime import datetime, timedelta
 
-test_database_token = 'FF0D4AB80BDB63716462F02BB9291897'
-pilot_database_token = 'BA2BB285FFCF240F0144FB02710BF64F'
-token=test_database_token
+with open('paths_n_fun.txt') as paths_file:
+    paths = eval(paths_file.read())
+    paths_file.close()
+test_database_token = paths.get('test_database_token')
+pilot_database_token = paths.get('pilot_database_token')
+token=pilot_database_token
+
+
 all_keys = ['record_id', 'redcap_repeat_instrument', 'redcap_repeat_instance', 'dem_firstname', 'dem_lastname', 'dem_zerodate', 'dem_code', 'dem_joindate', 'dem_pushids', 'demographic_complete', 'ran_uuid', 'ran_startdate', 'ran_enddate', 'ran_scheduledate', 'ran_status', 'ran_supplementaldata', 'ran_serializedresult', 'ran_flexion', 'ran_extension', 'ran_devicemotion', 'range_of_motion_complete', 'gai_uuid', 'gai_startdate', 'gai_enddate', 'gai_scheduledate', 'gai_status', 'gai_supplementaldata', 'gai_serializedresult', 'gai_outacc', 'gai_outdevice', 'gai_returnacc', 'gai_returndevice', 'gai_restacc', 'gai_restdevice', 'gait_walking_complete', 'tap_uuid', 'tap_startdate', 'tap_enddate', 'tap_scheduledate', 'tap_status', 'tap_supplementaldata', 'tap_serializedresult', 'tap_leftjson', 'tap_leftaccelerometer', 'tap_rightjson', 'tap_rightaccelerometer', 'tapping_complete', 'peg_uuid', 'peg_startdate', 'peg_enddate', 'peg_scheduledate', 'peg_status', 'peg_supplementaldata', 'peg_serializedresult', 'peg_dom_place', 'peg_dom_remove', 'peg_nondom_place', 'peg_nondom_remove', 'peg_test_complete', 'tim_uuid', 'tim_startdate', 'tim_enddate', 'tim_scheduledate', 'tim_status', 'tim_supplementaldata', 'tim_serializedresult', 'tim_trial1', 'tim_turnaround', 'tim_trial2', 'timed_walk_complete', 'tes948_uuid', 'tes948_startdate', 'tes948_enddate', 'tes948_scheduledate', 'tes948_status', 'tes948_supplementaldata', 'tes948_serializedresult', 'tes948_json', 'test_taks_complete']
 test_mapping = {
         'dem':'',
